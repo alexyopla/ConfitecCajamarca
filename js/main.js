@@ -1,0 +1,14 @@
+const $=s=>document.querySelector(s),S=n=>'S/ '+n;
+const wa=t=>`https://wa.me/${NEGOCIO.whatsapp}?text=${encodeURIComponent(t)}`;
+document.title=NEGOCIO.nombre+' | Técnico de computadoras a domicilio en Cajamarca';
+$('#nom').textContent=$('#nom2').textContent=NEGOCIO.nombre;document.querySelectorAll('.gar').forEach(e=>e.textContent=NEGOCIO.garantia);
+$('#hor').textContent=NEGOCIO.horario;$('#call').href='tel:+'+NEGOCIO.telefono;
+document.querySelectorAll('[data-wa]').forEach(a=>a.href=wa('Hola, necesito mantenimiento para mi laptop'));
+$('#wa-plan').href=wa('Hola, quiero información del plan mensual para mi negocio.');
+$('#srv').innerHTML=SERVICIOS.map(s=>`<article class="card"><i>${s.i}</i><h3>${s.t}</h3><p>${s.d}</p><div class="pr"><span style="font-weight:500;font-size:.8rem;color:var(--mute)">desde </span>${S(s.p)}${s.n?`<small>${s.n}</small>`:''}</div><a class="ask" target="_blank" rel="noopener" href="${wa('Hola, quiero cotizar: '+s.t)}">Pedir este servicio →</a></article>`).join('');
+$('#pk').innerHTML=PAQUETES.map(p=>`<article class="pkg${p.d?' d':''}">${p.d?'<span class="ribbon">MÁS ELEGIDO</span>':''}<h3>${p.n}</h3><div class="big">${S(p.p)}</div><ul>${p.l.map(x=>`<li>${x}</li>`).join('')}</ul>${p.n2?`<small>${p.n2}</small>`:''}<a class="btn" target="_blank" rel="noopener" href="${wa('Hola, quiero el paquete '+p.n)}">Elegir ${p.n}</a></article>`).join('');
+let h='';for(let i=1;i<=CASOS;i++)h+=`<div class="cmp"><img src="assets/antes-despues/${i}-despues.jpg" alt="Después ${i}" loading="lazy" onerror="this.onerror=null;this.src='assets/ph-despues.svg'"><img class="b" src="assets/antes-despues/${i}-antes.jpg" alt="Antes ${i}" loading="lazy" onerror="this.onerror=null;this.src='assets/ph-antes.svg'"><span class="ln"></span><span class="kn">↔</span><em class="l1">ANTES</em><em class="l2">DESPUÉS</em><input type="range" min="0" max="100" value="50" aria-label="Comparar antes y después"></div>`;
+$('#ba').innerHTML=h;document.querySelectorAll('.cmp input').forEach(r=>r.addEventListener('input',()=>r.parentElement.style.setProperty('--x',r.value+'%')));
+$('#op').innerHTML=OPINIONES.map(o=>`<article class="op"><div class="st">★★★★★</div><p>“${o.o}”</p><b>${o.n}</b></article>`).join('');
+$('#zn').innerHTML=DISTRITOS.map(d=>`<span>${d}</span>`).join('');
+document.querySelectorAll('.nt').forEach(e=>e.textContent=NEGOCIO.nota);
